@@ -1,0 +1,1 @@
+web: yarn build && http-server -p $PORT ./dist
