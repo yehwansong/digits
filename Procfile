@@ -1,1 +1,1 @@
-web: yarn build && http-server -p $PORT ./dist
+web: npm run build && http-server -p $PORT ./dist
