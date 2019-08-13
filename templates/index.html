@@ -17,7 +17,6 @@
     gtag('config', 'UA-125176569-1');
   </script>
   <style>
-      }
 #move{
     top: 50vh;
     position: absolute;
@@ -90,25 +89,11 @@
       var output = document.getElementsByTagName('h6')
       if(output){
         for (var i = 0; i < output.length; i++) {
-            output_array.push(output[i].innerHTML.split(" ")[1])
+            output_array.push(output[i].innerHTML)
                 if (i == output.length-1) {
                     console.log (output_array.join(''))
                 }
         }      
-        }
-    }
-    function clean_buttons(){
-        if(document.getElementsByClassName('ant-col-xs-24').length >4){
-            var col = document.getElementsByClassName('ant-col-xs-24')
-            for (var i = col.length - 1; i >= 0; i--) {
-                console.log(col[i])
-                console.log(col[i].getElementsByTagName('button'))
-                col[i].getElementsByTagName('button')[1].style.display='none'
-            } 
-        }else{
-            setTimeout(function(){
-            clean_buttons()
-            }, 100);
         }
     }
   </script>
