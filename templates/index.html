@@ -20,8 +20,53 @@
 
 <body>
   <div id="app">Loading application...</div>
+  <div id="app2">Loading application...</div>
+  <div id="move">move!</div>
 
   <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
+  <script>
+    canvas_size()
+    clean_buttons()
+    function canvas_size(){
+        if(document.getElementsByTagName('canvas').length >4){
+            document.getElementsByTagName('canvas')[0].style.width = window.innerWidth/2 + 'px'
+            document.getElementsByTagName('canvas')[5].style.width = window.innerWidth/2 + 'px'
+            document.getElementsByTagName('canvas')[0].style.height = window.innerWidth/2 + 'px'
+            document.getElementsByTagName('canvas')[5].style.height = window.innerWidth/2 + 'px'
+        }else{
+            setTimeout(function(){
+            canvas_size()
+            }, 100);
+        }
+    }
+    document.getElementById('move').addEventListener("click", move);
+    function move(){
+      var output_array = []
+      var output = document.getElementsByTagName('h6')
+      if(output){
+        for (var i = 0; i < output.length; i++) {
+            output_array.push(output[i].innerHTML.split(" ")[1])
+                if (i == output.length-1) {
+                    console.log (output_array.join(''))
+                }
+        }      
+        }
+    }
+    function clean_buttons(){
+        if(document.getElementsByClassName('ant-col-xs-24').length >4){
+            var col = document.getElementsByClassName('ant-col-xs-24')
+            for (var i = col.length - 1; i >= 0; i--) {
+                console.log(col[i])
+                console.log(col[i].getElementsByTagName('button'))
+                col[i].getElementsByTagName('button')[1].style.display='none'
+            } 
+        }else{
+            setTimeout(function(){
+            clean_buttons()
+            }, 100);
+        }
+    }
+  </script>
 </body>
 
 </html>

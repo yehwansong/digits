@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
-
+var w = window.innerWidth
 const Canvas = styled.canvas`
   width: 300px;
   height: 300px;
@@ -16,17 +16,17 @@ const Canvas = styled.canvas`
   }
 `;
 
-export default class Drawing extends React.Component {
+export default class Drawing_2 extends React.Component {
   static propTypes = {
-    isDrawing: PropTypes.bool.isRequired,
-    isEndStroke: PropTypes.bool.isRequired,
-    strokes: PropTypes.arrayOf(
+    isDrawing_2: PropTypes.bool.isRequired,
+    isEndStroke_2: PropTypes.bool.isRequired,
+    strokes_2: PropTypes.arrayOf(
       PropTypes.arrayOf(PropTypes.shape({ x: PropTypes.number, y: PropTypes.number })),
     ).isRequired,
-    addStroke: PropTypes.func.isRequired,
-    addStrokePos: PropTypes.func.isRequired,
-    endStroke: PropTypes.func.isRequired,
-    addInput: PropTypes.func.isRequired,
+    addStroke_2: PropTypes.func.isRequired,
+    addStrokePos_2: PropTypes.func.isRequired,
+    endStroke_2: PropTypes.func.isRequired,
+    addInput_2: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -43,33 +43,33 @@ export default class Drawing extends React.Component {
     this.initContext();
     this.drawStrokes();
 
-    const { isEndStroke, addInput } = this.props;
+    const { isEndStroke_2, addInput_2 } = this.props;
 
-    if (isEndStroke) {
-      addInput(this.ctx.getImageData(0, 0, 280, 280));
+    if (isEndStroke_2) {
+      addInput_2(this.ctx.getImageData(0, 0, 280, 280));
     }
   }
 
   onMouseDown = (e) => {
-    const { addStroke } = this.props;
-    addStroke(this.computeMousePos(e));
+    const { addStroke_2 } = this.props;
+    addStroke_2(this.computeMousePos(e));
   };
 
   onMouseMove = (e) => {
-    const { isDrawing, addStrokePos } = this.props;
+    const { isDrawing_2, addStrokePos_2 } = this.props;
 
-    if (!isDrawing) {
+    if (!isDrawing_2) {
       return;
     }
 
-    addStrokePos(this.computeMousePos(e));
+    addStrokePos_2(this.computeMousePos(e));
   };
 
   onStrokeEnd = () => {
-    const { isDrawing, endStroke } = this.props;
+    const { isDrawing_2, endStroke_2 } = this.props;
 
-    if (isDrawing) {
-      endStroke();
+    if (isDrawing_2) {
+      endStroke_2();
     }
   };
 
@@ -115,10 +115,10 @@ export default class Drawing extends React.Component {
   }
 
   drawStrokes() {
-    const { strokes } = this.props;
+    const { strokes_2 } = this.props;
 
-    for (let j = 0; j < strokes.length; j += 1) {
-      const points = strokes[j];
+    for (let j = 0; j < strokes_2.length; j += 1) {
+      const points = strokes_2[j];
 
       this.ctx.beginPath();
       this.ctx.moveTo(points[0].x, points[0].y);
