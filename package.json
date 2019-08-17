@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --hot --env.WEBPACK_CONFIG=dev --progress",
+    "start": "webpack-dev-server --hot --host 0.0.0.0 --env.WEBPACK_CONFIG=dev --progress",
     "build": "webpack --env.WEBPACK_CONFIG=prod --progress",
     "http-server": "http-server -p 9000 ./dist",
     "serve": "yarn build && yarn http-server",
