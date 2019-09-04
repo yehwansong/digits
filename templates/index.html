@@ -32,10 +32,13 @@
   left: 0
 }
 #app2{
+  right: 33.33vw
+}
+#app3{
   right: 0
 }
-#app, #app2{
-    width: 50vw;
+#app, #app2, #app3{
+    width: 33.33vw;
     position: absolute;
     top: 0;
 }
@@ -65,6 +68,7 @@
 <body>
   <div id="app">Loading application...</div>
   <div id="app2">Loading application...</div>
+  <div id="app3">Loading application...</div>
   <div id="move">move!</div>
 
   <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
@@ -72,11 +76,13 @@
     canvas_size()
     // clean_buttons()
     function canvas_size(){
-        if(document.getElementsByTagName('canvas').length >4){
-            document.getElementsByTagName('canvas')[0].style.width = window.innerWidth/2 + 'px'
-            document.getElementsByTagName('canvas')[5].style.width = window.innerWidth/2 + 'px'
-            document.getElementsByTagName('canvas')[0].style.height = window.innerWidth/2 + 'px'
-            document.getElementsByTagName('canvas')[5].style.height = window.innerWidth/2 + 'px'
+        if(document.getElementsByTagName('canvas').length >9){
+            document.getElementsByTagName('canvas')[0].style.width = window.innerWidth/3 + 'px'
+            document.getElementsByTagName('canvas')[0].style.height = (window.innerWidth/3)*2 + 'px'
+            document.getElementsByTagName('canvas')[5].style.width = window.innerWidth/3 + 'px'
+            document.getElementsByTagName('canvas')[5].style.height = (window.innerWidth/3)*2 + 'px'
+            document.getElementsByTagName('canvas')[10].style.width = window.innerWidth/3 + 'px'
+            document.getElementsByTagName('canvas')[10].style.height = (window.innerWidth/3)*2 + 'px'
         }else{
             setTimeout(function(){
             canvas_size()
