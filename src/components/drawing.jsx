@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { injectGlobal } from styled from 'styled-components';
+import styled, { injectGlobal } from 'styled-components';
 
 
 import remixreg from './fonts/remix_reg.woff';
