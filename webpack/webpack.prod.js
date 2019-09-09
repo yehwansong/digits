@@ -38,9 +38,15 @@ module.exports = merge.smartStrategy({
         use: [
           {
             loader: 'style-loader',
+            options: {
+              forceEnv: 'production',
+            },
           },
           {
             loader: 'css-loader',
+            options: {
+              forceEnv: 'production',
+            },
           },
         ],
       },
