@@ -10,6 +10,7 @@ const merge = require('webpack-merge');
 const webpack = require('webpack');
 const Common = require('./webpack.common.js');
 const Utils = require('./utils');
+import './index.css';
 
 module.exports = merge.smartStrategy({
   'module.rules.use': 'prepend',
