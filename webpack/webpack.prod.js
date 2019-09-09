@@ -16,7 +16,7 @@ module.exports = merge.smartStrategy({
   'module.rules.use': 'prepend',
 })(Common, {
   mode: 'production',
-  devtool: false,
+  devtool: 'source-map',
   output: {
     filename: 'assets/[name].[contenthash].js',
   },
