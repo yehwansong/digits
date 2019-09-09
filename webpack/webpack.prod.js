@@ -37,7 +37,10 @@ module.exports = merge.smartStrategy({
         test: /\.css$/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader,
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
           },
         ],
       },
@@ -52,9 +55,9 @@ module.exports = merge.smartStrategy({
   plugins: [
     new webpack.HashedModuleIdsPlugin(),
     new CopyWebpackPlugin([{ from: Utils.PUBLIC_DIR, to: Utils.DIST_DIR }]),
-    new MiniCssExtractPlugin({
-      filename: 'styles/[name].[contenthash].css',
-    }),
+    // new MiniCssExtractPlugin({
+    //   filename: 'styles/[name].[contenthash].css',
+    // }),
     new HtmlWebpackPlugin({
       ...Utils.generateHtmlWebpackPluginConfig(),
       inlineSource: 'runtime.+\\.js',
