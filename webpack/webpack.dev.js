@@ -37,6 +37,12 @@ module.exports = merge.smartStrategy({
           },
         ],
       },
+      {
+        test: /\.(woff|woff2|eot|ttf|svg|png)$/,
+        use: [
+          {loader: 'file-loader'}
+        ]
+      },
     ],
   },
   plugins: [

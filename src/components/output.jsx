@@ -17,12 +17,6 @@ export default class Output extends React.PureComponent {
 
   render() {
     const { prediction } = this.props;
-    return (
-      <H2>
-        {prediction != null
-          ? `${prediction}`
-          : 'Draw a number (0-9) in the black box above'}
-      </H2>
-    );
+    return <H2>{prediction != null ? `${prediction}` : ' _'}</H2>;
   }
 }
