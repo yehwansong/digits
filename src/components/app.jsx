@@ -3,6 +3,7 @@ import { hot } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 import configureStore from '../store/configureStore';
 import Mnist from './mnist';
+import './index.css';
 
 window.BizCharts.track(false);
 
