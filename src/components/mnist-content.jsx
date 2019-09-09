@@ -7,6 +7,12 @@ import ImagePipeline from './image-pipeline';
 const { Content } = Layout;
 
 const ContentContainer = styled(Content)`
+  @font-face {
+    font-family: 'Grotesk-Remix-reg';
+    src: url('./fonts/39DD9F_0_0.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
   max-width: 880px;
   margin: 0 auto;
 `;
