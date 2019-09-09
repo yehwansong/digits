@@ -1,38 +1,25 @@
-const AsyncStylesheetWebpackPlugin = require('async-stylesheet-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const InlineSourcePlugin = require('html-webpack-inline-source-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const WebpackCdnPlugin = require('webpack-cdn-plugin');
 const merge = require('webpack-merge');
-const webpack = require('webpack');
+const path = require('path');
 const Common = require('./webpack.common.js');
 const Utils = require('./utils');
 
 module.exports = merge.smartStrategy({
   'module.rules.use': 'prepend',
 })(Common, {
-  mode: 'production',
-  devtool: false,
-  output: {
-    filename: 'assets/[name].[contenthash].js',
+  mode: 'development',
+  devtool: 'source-map',
+  devServer: {
+    contentBase: [Utils.PUBLIC_DIR, path.resolve(Utils.ROOT_DIR, 'node_modules')],
+    overlay: {
+      warnings: false,
+      errors: true,
+    },
+    port: 9000,
   },
   module: {
     rules: [
-      {
-        test: /\.(js|jsx)$/,
-        include: /src/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              forceEnv: 'production',
-            },
-          },
-        ],
-      },
       {
         test: /\.css$/,
         use: [
@@ -59,49 +46,19 @@ module.exports = merge.smartStrategy({
     ],
   },
   plugins: [
-    new webpack.HashedModuleIdsPlugin(),
-    new CopyWebpackPlugin([{ from: Utils.PUBLIC_DIR, to: Utils.DIST_DIR }]),
-    new MiniCssExtractPlugin({
-      filename: 'styles/[name].[contenthash].css',
-    }),
-    new HtmlWebpackPlugin({
-      ...Utils.generateHtmlWebpackPluginConfig(),
-      inlineSource: 'runtime.+\\.js',
-    }),
-    new InlineSourcePlugin(),
-    new AsyncStylesheetWebpackPlugin({
-      preloadPolyfill: true,
-    }),
     new WebpackCdnPlugin({
       modules: [
-        { name: 'react', var: 'React', path: 'umd/react.production.min.js' },
-        { name: 'react-dom', var: 'ReactDOM', path: 'umd/react-dom.production.min.js' },
-        { name: 'styled-components', var: 'styled', path: 'dist/styled-components.min.js' },
-        { name: 'redux', var: 'Redux', path: 'dist/redux.min.js' },
-        { name: 'react-redux', var: 'ReactRedux', path: 'dist/react-redux.min.js' },
-        { name: 'redux-saga', var: 'ReduxSaga', path: 'dist/redux-saga.min.js' },
-        { name: '@tensorflow/tfjs', var: 'tf', path: 'dist/tf.min.js' },
-        { name: 'bizcharts', var: 'BizCharts', path: 'umd/BizCharts.min.js' },
+        { name: 'react', var: 'React', path: 'umd/react.development.js' },
+        { name: 'react-dom', var: 'ReactDOM', path: 'umd/react-dom.development.js' },
+        { name: 'react-redux', var: 'ReactRedux', path: 'dist/react-redux.js' },
+        { name: 'redux-saga', var: 'ReduxSaga', path: 'dist/redux-saga.js' },
+        { name: '@tensorflow/tfjs', var: 'tf', path: 'dist/tf.js' },
+        { name: 'bizcharts', var: 'BizCharts', path: 'umd/BizCharts.js' },
       ],
-      prod: true,
+      prod: false,
+    }),
+    new BundleAnalyzerPlugin({
+      openAnalyzer: false,
     }),
   ],
-  optimization: {
-    noEmitOnErrors: true,
-    minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        uglifyOptions: {
-          output: {
-            comments: false,
-          },
-        },
-      }),
-      new OptimizeCSSAssetsPlugin({}),
-    ],
-  },
-  performance: {
-    maxEntrypointSize: 350000,
-  },
 });
