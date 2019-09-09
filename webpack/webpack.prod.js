@@ -2,7 +2,7 @@ const AsyncStylesheetWebpackPlugin = require('async-stylesheet-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InlineSourcePlugin = require('html-webpack-inline-source-plugin');
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const WebpackCdnPlugin = require('webpack-cdn-plugin');
@@ -10,7 +10,6 @@ const merge = require('webpack-merge');
 const webpack = require('webpack');
 const Common = require('./webpack.common.js');
 const Utils = require('./utils');
-import './index.css';
 
 module.exports = merge.smartStrategy({
   'module.rules.use': 'prepend',
@@ -62,9 +61,9 @@ module.exports = merge.smartStrategy({
   plugins: [
     new webpack.HashedModuleIdsPlugin(),
     new CopyWebpackPlugin([{ from: Utils.PUBLIC_DIR, to: Utils.DIST_DIR }]),
-    // new MiniCssExtractPlugin({
-    //   filename: 'styles/[name].[contenthash].css',
-    // }),
+    new MiniCssExtractPlugin({
+      filename: 'styles/[name].[contenthash].css',
+    }),
     new HtmlWebpackPlugin({
       ...Utils.generateHtmlWebpackPluginConfig(),
       inlineSource: 'runtime.+\\.js',
