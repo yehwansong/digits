@@ -49,7 +49,19 @@ const config = {
             loader: 'css-loader',
           },
         ],
+      include: [/fonts/]
       },
+    {
+      test: /\.(woff|woff2|ttf|otf)$/,
+      loader: 'file-loader',
+      include: [/fonts/],
+
+      options: {
+        name: '[hash].[ext]',
+        outputPath: '/',
+        publicPath: url => '../' + url
+      }
+    },
     ],
   },
   plugins: [
