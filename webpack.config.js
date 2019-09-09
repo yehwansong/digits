@@ -3,7 +3,7 @@ module.exports = (env) => {
     return require('./webpack/webpack.dev.js');
   }
   if (env.WEBPACK_CONFIG === 'prod') {
-    return require('./webpack/webpack.prod.js');
+    return require('./webpack/webpack.dev.js');
   }
   if (env.WEBPACK_CONFIG === 'analyze') {
     return require('./webpack/webpack.analyze.js');
