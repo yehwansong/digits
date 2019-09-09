@@ -5,45 +5,45 @@ import { injectGlobal } from 'styled-components';
 import configureStore from '../store/configureStore';
 import Mnist from './mnist';
 // import './index.css';
-import remix_reg from './fonts/remix_reg.woff';
-import remix_mid from './fonts/39DDDA_0_0.woff';
-import remix_bold from './fonts/3A0A50_0_0.woff';
-import j_Regular from './fonts/j-Regular.woff';
-import j_Bold from './fonts/JJGothic-Bold.woff';
-import j_Medium from './fonts/j-Medium.woff';
+import remixreg from './fonts/remix_reg.woff';
+import remixmid from './fonts/39DDDA_0_0.woff';
+import remixbold from './fonts/3A0A50_0_0.woff';
+import jRegular from './fonts/j-Regular.woff';
+import jBold from './fonts/JJGothic-Bold.woff';
+import jMedium from './fonts/j-Medium.woff';
 
 injectGlobal`
 @font-face {
     font-family: 'Grotesk-Remix-reg';
-    src: url(${remix_reg});
+    src: url(${remixreg});
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'Grotesk-Remix-mid';
-    src: url(${remix_mid});
+    src: url(${remixmid});
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'Grotesk-Remix-bold';
-    src: url(${remix_bold});
+    src: url(${remixbold});
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'j-Regular';
-    src: url(${j_Regular});
+    src: url(${jRegular});
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'j-Bold';
-    src:url(${j_Bold});
+    src:url(${jBold});
 }
 @font-face {
     font-family: 'j-Med';
-    src: url(${j_Medium});
+    src: url(${jMedium});
     font-weight: normal;
     font-style: normal;
 }
